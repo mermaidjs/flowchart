@@ -6,7 +6,7 @@ export const orientation = createToken({ name: 'orientation', pattern: /(?:TB|TD
 
 // example: A[Hello]
 export const nodeId = createToken({ name: 'nodeId', pattern: /[\w-]+/ })
-export const nodeData = createToken({ name: 'nodeData', pattern: /(?:\[.+?\]|\(.+?\)|\(\(.+?\)\)|\{.+?\})/ })
+export const nodeData = createToken({ name: 'nodeData', pattern: /(?:\[.+\]|\(\(.+\)\)|\(.+\)|\{.+\})/ })
 
 // example: -->
 export const edge = createToken({ name: 'edge', pattern: /(?:---|-->)/ })
