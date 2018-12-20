@@ -1,5 +1,7 @@
 # mermaid flowchart
 
+[![Build Status](https://travis-ci.org/mermaidjs/flowchart.svg?branch=master)](https://travis-ci.org/mermaidjs/flowchart)
+
 This project is my endeavour to rewrite [mermaid](https://github.com/knsv/mermaid) flowchart.
 
 
