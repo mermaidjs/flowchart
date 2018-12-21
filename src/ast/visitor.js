@@ -29,7 +29,14 @@ export const createVisitor = parser => {
         id: ctx.nodeId[0].image
       }
       if (ctx.nodeData) {
-        result.data = ctx.nodeData[0].image
+        const data = ctx.nodeData[0].image
+        if (data.startsWith('[') && data.endsWith(']')) {
+          result.text = data.substring(1, data.length - 1)
+          result.shape = 'rect'
+        } else if (data.startsWith('((') && data.endsWith('))')) {
+          result.text = data.substring(2, data.length - 2)
+          result.shape = 'circle'
+        }
       }
       return result
     }

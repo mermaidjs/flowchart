@@ -9,7 +9,8 @@
     "chevrotain": "^4.1.1",
     "d3": "^5.7.0",
     "dagre-d3-renderer": "^0.5.8",
-    "graphlibrary": "^2.2.0"
+    "graphlibrary": "^2.2.0",
+    "ramda": "^0.26.1"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
