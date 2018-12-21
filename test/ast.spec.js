@@ -6,11 +6,11 @@ describe('AST', () => {
     const ast = parse(`graph TD
 A`)
     expect(ast).toEqual({
-      'direction': 'TD',
-      'expressions': [
+      direction: 'TD',
+      expressions: [
         {
-          'node1': {
-            'id': 'A'
+          node1: {
+            id: 'A'
           }
         }
       ]
@@ -21,15 +21,15 @@ A`)
     const ast = parse(`graph LR
 A --> B`)
     expect(ast).toEqual({
-      'direction': 'LR',
-      'expressions': [
+      direction: 'LR',
+      expressions: [
         {
-          'node1': {
-            'id': 'A'
+          node1: {
+            id: 'A'
           },
-          'edge': '-->',
-          'node2': {
-            'id': 'B'
+          edge: '-->',
+          node2: {
+            id: 'B'
           }
         }
       ]
@@ -40,15 +40,15 @@ A --> B`)
     const ast = parse(`graph LR
 iii --- jjj`)
     expect(ast).toEqual({
-      'direction': 'LR',
-      'expressions': [
+      direction: 'LR',
+      expressions: [
         {
-          'node1': {
-            'id': 'iii'
+          node1: {
+            id: 'iii'
           },
-          'edge': '---',
-          'node2': {
-            'id': 'jjj'
+          edge: '---',
+          node2: {
+            id: 'jjj'
           }
         }
       ]
@@ -59,12 +59,13 @@ iii --- jjj`)
     const ast = parse(`graph TD
 A[hello world]`)
     expect(ast).toEqual({
-      'direction': 'TD',
-      'expressions': [
+      direction: 'TD',
+      expressions: [
         {
-          'node1': {
-            'id': 'A',
-            'data': '[hello world]'
+          node1: {
+            id: 'A',
+            label: 'hello world',
+            shape: 'rect'
           }
         }
       ]
@@ -75,12 +76,15 @@ A[hello world]`)
     const ast = parse(`graph TD
 A(hello world)`)
     expect(ast).toEqual({
-      'direction': 'TD',
-      'expressions': [
+      direction: 'TD',
+      expressions: [
         {
-          'node1': {
-            'id': 'A',
-            'data': '(hello world)'
+          node1: {
+            id: 'A',
+            label: 'hello world',
+            shape: 'rect',
+            rx: 5,
+            ry: 5
           }
         }
       ]
@@ -91,12 +95,13 @@ A(hello world)`)
     const ast = parse(`graph TD
 A((hello world))`)
     expect(ast).toEqual({
-      'direction': 'TD',
-      'expressions': [
+      direction: 'TD',
+      expressions: [
         {
-          'node1': {
-            'id': 'A',
-            'data': '((hello world))'
+          node1: {
+            id: 'A',
+            label: 'hello world',
+            shape: 'circle'
           }
         }
       ]
@@ -107,12 +112,13 @@ A((hello world))`)
     const ast = parse(`graph TD
 A{hello world}`)
     expect(ast).toEqual({
-      'direction': 'TD',
-      'expressions': [
+      direction: 'TD',
+      expressions: [
         {
-          'node1': {
-            'id': 'A',
-            'data': '{hello world}'
+          node1: {
+            id: 'A',
+            label: 'hello world',
+            shape: 'diamond'
           }
         }
       ]
@@ -124,18 +130,20 @@ A{hello world}`)
 A[hello ] world]
 B((hello)(world*汉字，㊙️“"))`)
     expect(ast).toEqual({
-      'direction': 'TD',
-      'expressions': [
+      direction: 'TD',
+      expressions: [
         {
-          'node1': {
-            'id': 'A',
-            'data': '[hello ] world]'
+          node1: {
+            id: 'A',
+            label: 'hello ] world',
+            shape: 'rect'
           }
         },
         {
-          'node1': {
-            'id': 'B',
-            'data': '((hello)(world*汉字，㊙️“"))'
+          node1: {
+            id: 'B',
+            label: 'hello)(world*汉字，㊙️“"',
+            shape: 'circle'
           }
         }
       ]
