@@ -36,6 +36,14 @@ export const createVisitor = parser => {
         } else if (data.startsWith('((') && data.endsWith('))')) {
           result.label = data.substring(2, data.length - 2)
           result.shape = 'circle'
+        } else if (data.startsWith('(') && data.endsWith(')')) {
+          result.label = data.substring(1, data.length - 1)
+          result.shape = 'rect'
+          result.rx = 5
+          result.ry = 5
+        } else if (data.startsWith('{') && data.endsWith('}')) {
+          result.label = data.substring(1, data.length - 1)
+          result.shape = 'diamond'
         }
       }
       return result

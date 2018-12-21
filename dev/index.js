@@ -29,7 +29,7 @@ const generareGraph = input => {
     }
   }
   Object.keys(nodes).forEach(id => {
-    graph.setNode(id, { label: nodes[id].label || id, shape: nodes[id].shape || 'rect' })
+    graph.setNode(id, nodes[id])
   })
   edges.forEach(([node1, node2]) => {
     graph.setEdge(node1, node2)
