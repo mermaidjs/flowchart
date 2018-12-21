@@ -24,3 +24,12 @@ yarn install
 ```
 yarn test
 ```
+
+
+## Dev
+
+Run the following command and see the flowcharts in browser:
+
+```
+yarn dev
+```

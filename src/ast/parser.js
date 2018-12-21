@@ -1,7 +1,10 @@
 import { Parser as BaseParser } from 'chevrotain'
 
-import tokens, { lineBreak, graph, orientation, edge, nodeId, nodeData } from './tokens'
+import tokens from './tokens'
 import { createVisitor } from './visitor'
+
+// have to require instead of import because: https://github.com/SAP/chevrotain/issues/345#issuecomment-272934994
+const { lineBreak, graph, orientation, edge, nodeId, nodeData } = require('./tokens')
 
 class Parser extends BaseParser {
   constructor () {
