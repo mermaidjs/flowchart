@@ -26,16 +26,14 @@ const render = (input, el) => {
     nodes[expression.node1.id] = R.merge((nodes[expression.node1.id] || {}), expression.node1)
     if (expression.node2) {
       nodes[expression.node2.id] = R.merge((nodes[expression.node2.id] || {}), expression.node2)
-      edges.push([nodes[expression.node1.id], nodes[expression.node2.id]])
+      edges.push([expression.node1.id, expression.node2.id])
     }
   }
   Object.keys(nodes).forEach(id => {
-    console.log(nodes[id].text || id, { shape: nodes[id].shape || 'rect' })
-    graph.setNode(nodes[id].text || id, { shape: nodes[id].shape || 'rect' })
+    graph.setNode(id, { label: nodes[id].label || id, shape: nodes[id].shape || 'rect' })
   })
   edges.forEach(([node1, node2]) => {
-    console.log((node1.text || node1.id), (node2.text || node2.id))
-    graph.setEdge((node1.text || node1.id), (node2.text || node2.id))
+    graph.setEdge(node1, node2)
   })
 
   const g = d3.select(el).select('g')
@@ -45,7 +43,7 @@ const render = (input, el) => {
 }
 
 render(`
-graph BT
+graph TD
 A[hello] --> B
 A --> C((world))
 B --> D
