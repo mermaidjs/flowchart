@@ -1,0 +1,10 @@
+.edgePath path {
+  stroke: green;
+  stroke-width: 1.5px;
+}
+
+.node rect,circle,ellipse,polygon {
+  stroke: #13540c;
+  fill: #cde498;
+  stroke-width: 1px;
+}
