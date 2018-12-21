@@ -17,25 +17,30 @@ const render = (input, el) => {
     marginy: 16
   }).setDefaultEdgeLabel(function () { return {} })
 
-  graph.setNode('This is the text in the box', { shape: 'rect' })
-  graph.setNode('B', { shape: 'ellipse' })
-  graph.setNode('C', { shape: 'diamond' })
-  graph.setNode('D', { shape: 'circle' })
+  const nodes = {}
+  const edges = []
+  for (const expression of ast.expressions) {
+    nodes[expression.node1.id] = expression.node1.data
+    if (expression.node2) {
+      nodes[expression.node2.id] = expression.node2.data
+      edges.push([expression.node1.id, expression.node2.id])
+    }
+  }
+  Object.keys(nodes).forEach(node => {
+    graph.setNode(node, { shape: 'rect' })
+  })
+  edges.forEach(([node1, node2]) => graph.setEdge(node1, node2))
 
-  graph.setEdge('This is the text in the box', 'B')
-  graph.setEdge('This is the text in the box', 'C')
-  graph.setEdge('B', 'D', { arrowhead: 'undirected' })
-  graph.setEdge('C', 'D', { arrowhead: 'vee' })
-
-  const g = d3.select('#container').select('g')
-
-  // Create the renderer
+  const g = d3.select(el).select('g')
   const Render = dagreD3.render
   const render = new Render()
-
-  // Run the renderer. This is what draws the final graph.
   render(g, graph)
 }
 
-render(`graph TD
-A --> B`, document.getElementById('container'))
+render(`
+graph BT
+A --> B
+A --> C
+B --> D
+C --> D
+`, document.getElementById('container'))
