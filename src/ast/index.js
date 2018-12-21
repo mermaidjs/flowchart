@@ -1,7 +1,7 @@
 import lexer from './lexer'
 import parser from './parser'
 
-const parse = input => {
+export const parse = input => {
   const lexed = lexer.tokenize(input.trim())
   parser.input = lexed.tokens
   const cst = parser.flowchart()
@@ -11,5 +11,3 @@ const parse = input => {
   const ast = parser.visitor.visit(cst)
   return ast
 }
-
-export default parse

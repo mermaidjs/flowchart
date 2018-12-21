@@ -1,5 +1,5 @@
 /* eslint-env jest */
-import parse from '../src/ast'
+import { parse } from '../src/ast'
 
 describe('AST', () => {
   test('Single node', () => {
