@@ -7,9 +7,8 @@ import '../src/themes/forest.css'
 
 import { parse } from '../src/ast'
 
-const render = (input, el) => {
+const generareGraph = input => {
   const ast = parse(input)
-  console.log(JSON.stringify(ast, null, 2))
 
   const graph = new graphlib.Graph({
     multigraph: true,
@@ -36,16 +35,18 @@ const render = (input, el) => {
     graph.setEdge(node1, node2)
   })
 
-  const g = d3.select(el).select('g')
+  return graph
+}
+
+// turn <pre> to <svg>
+const renderElement = () => {
+  const flowchart = document.getElementById('flowchart')
+  const g = d3.select('body').insert('svg', '#flowchart').attr('id', 'diagram').attr('width', 512).attr('height', 384).insert('g')
+  const graph = generareGraph(flowchart.innerText)
   const Render = dagreD3.render
   const render = new Render()
   render(g, graph)
+  flowchart.parentNode.removeChild(flowchart)
 }
 
-render(`
-graph TD
-A[hello] --> B
-A --> C((world))
-B --> D
-C --> D
-`, document.getElementById('container'))
+renderElement()
