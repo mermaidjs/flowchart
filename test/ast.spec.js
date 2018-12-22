@@ -149,4 +149,28 @@ B((hello)(world*汉字，㊙️“"))`)
       ]
     })
   })
+
+  test('json node data', () => {
+    const ast = toAst(`graph LR
+A --> B
+A{"shape": "rect", "label": "Hello", "rx": 15, "ry": 5}
+B{"shape": "circle", "label": "World"}
+`)
+    expect(ast).toEqual({
+      direction: 'LR',
+      expressions: [
+        {
+          edge: '-->',
+          node1: { id: 'A' },
+          node2: { id: 'B' }
+        },
+        {
+          node1: { id: 'A', label: 'Hello', rx: 15, ry: 5, shape: 'rect' }
+        },
+        {
+          node1: { id: 'B', label: 'World', shape: 'circle' }
+        }
+      ]
+    })
+  })
 })
