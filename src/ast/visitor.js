@@ -42,8 +42,13 @@ export const createVisitor = parser => {
           result.rx = 5
           result.ry = 5
         } else if (data.startsWith('{') && data.endsWith('}')) {
-          result.label = data.substring(1, data.length - 1)
-          result.shape = 'diamond'
+          try {
+            const json = JSON.parse(data)
+            Object.keys(json).forEach(k => { result[k] = json[k] })
+          } catch (e) { // not valid json data
+            result.label = data.substring(1, data.length - 1)
+            result.shape = 'diamond'
+          }
         }
       }
       return result
