@@ -6,13 +6,19 @@ import { toDagreGraph } from '../src'
 
 // turn <pre> to <svg>
 const renderElement = () => {
-  const flowchart = document.getElementById('flowchart')
-  const g = d3.select('body').insert('svg', '#flowchart').attr('id', 'diagram').attr('width', 512).attr('height', 384).insert('g')
-  const dagreGraph = toDagreGraph(flowchart.innerText)
-  const Render = dagreD3.render
-  const render = new Render()
-  render(g, dagreGraph)
-  flowchart.parentNode.removeChild(flowchart)
+  d3.select('.flowchart').each(function () {
+    const dagreGraph = toDagreGraph(this.innerText)
+
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
+    svg.setAttribute('width', 512)
+    svg.setAttribute('height', 384)
+    svg.innerHTML = '<g></g>'
+    this.parentNode.replaceChild(svg, this)
+
+    const Render = dagreD3.render
+    const render = new Render()
+    render(d3.select(svg).select('g'), dagreGraph)
+  })
 }
 
 renderElement()

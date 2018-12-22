@@ -33,3 +33,8 @@ Run the following command and see the flowcharts in browser:
 ```
 yarn dev
 ```
+
+
+## Todo
+
+- Auto figure out graph size
