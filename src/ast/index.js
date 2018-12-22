@@ -6,7 +6,7 @@ export const toAst = input => {
   parser.input = lexed.tokens
   const cst = parser.flowchart()
   if (parser.errors.length > 0) {
-    throw parser.errors
+    throw parser.errors[0]
   }
   const ast = parser.visitor.visit(cst)
   return ast

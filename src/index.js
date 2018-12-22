@@ -38,12 +38,22 @@ export const toDagreGraph = input => {
 
 export const renderElements = selectors => {
   document.querySelectorAll(selectors).forEach(element => {
+    let dagreGraph
+    try {
+      dagreGraph = toDagreGraph(element.innerText)
+    } catch (e) {
+      element.innerText = `${e.name}
+${e.message}
+Line: ${e.token.startLine} Column: ${e.token.startColumn}
+`
+      return
+    }
+
     // replace element with <svg>
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
     element.parentNode.replaceChild(svg, element)
 
     // render graph to <svg>
-    const dagreGraph = toDagreGraph(element.innerText)
     const Render = dagreD3.render
     const render = new Render()
     render(d3.select(svg), dagreGraph)
