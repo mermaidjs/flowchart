@@ -27,7 +27,7 @@ A --> B`)
           node1: {
             id: 'A'
           },
-          edge: '-->',
+          edge: { markerEnd: '>' },
           node2: {
             id: 'B'
           }
@@ -46,7 +46,7 @@ iii --- jjj`)
           node1: {
             id: 'iii'
           },
-          edge: '---',
+          edge: { },
           node2: {
             id: 'jjj'
           }
@@ -160,7 +160,7 @@ B{"shape": "circle", "label": "World"}
       direction: 'LR',
       expressions: [
         {
-          edge: '-->',
+          edge: { markerEnd: '>' },
           node1: { id: 'A' },
           node2: { id: 'B' }
         },
