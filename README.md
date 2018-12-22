@@ -37,4 +37,4 @@ yarn dev
 
 ## Todo
 
-- Auto figure out graph size
+- Support edge labels
