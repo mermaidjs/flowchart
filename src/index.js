@@ -30,7 +30,10 @@ export const toDagreGraph = input => {
     graph.setNode(id, nodes[id])
   })
   edges.forEach(([node1, node2, edge]) => {
-    graph.setEdge(node1, node2, { arrowhead: edge.markerEnd === '>' ? 'normal' : 'undirected' })
+    graph.setEdge(node1, node2, {
+      label: edge.label,
+      arrowhead: edge.markerEnd === '>' ? 'normal' : 'undirected'
+    })
   })
 
   return graph
@@ -44,8 +47,10 @@ export const renderElements = selectors => {
     } catch (e) {
       element.innerText = `${e.name}
 ${e.message}
-Line: ${e.token.startLine} Column: ${e.token.startColumn}
 `
+      if (e.token) {
+        element.innerText += `\nLine: ${e.token.startLine} Column: ${e.token.startColumn}`
+      }
       return
     }
 

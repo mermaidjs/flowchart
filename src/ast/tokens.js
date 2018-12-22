@@ -9,7 +9,8 @@ export const nodeId = createToken({ name: 'nodeId', pattern: /[\w-]+/ })
 export const nodeData = createToken({ name: 'nodeData', pattern: /(?:\[.+\]|\(\(.+\)\)|\(.+\)|\{.+\})/ })
 
 // example: -->
-export const edge = createToken({ name: 'edge', pattern: /(?:---|-->)/ })
+export const edgeArrow = createToken({ name: 'edgeArrow', pattern: /(?:---|-->)/ })
+export const edgeData = createToken({ name: 'edgeData', pattern: /(?:\|.+\|)/ })
 
 // all white space characters except line breaks
 const whiteSpace = createToken({ name: 'whiteSpace', pattern: /[^\S\n\r]+/, group: Lexer.SKIPPED })
@@ -17,4 +18,4 @@ const whiteSpace = createToken({ name: 'whiteSpace', pattern: /[^\S\n\r]+/, grou
 export const lineBreak = createToken({ name: 'lineBreak', pattern: /[\r\n]+/ })
 
 // all tokens
-export default [whiteSpace, lineBreak, edge, nodeData, graph, orientation, nodeId]
+export default [whiteSpace, lineBreak, edgeArrow, edgeData, nodeData, graph, orientation, nodeId]

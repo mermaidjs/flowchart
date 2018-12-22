@@ -4,7 +4,7 @@ import tokens from './tokens'
 import { createVisitor } from './visitor'
 
 // have to require instead of import because: https://github.com/SAP/chevrotain/issues/345#issuecomment-272934994
-const { lineBreak, graph, orientation, edge, nodeId, nodeData } = require('./tokens')
+const { lineBreak, graph, orientation, edgeArrow, edgeData, nodeId, nodeData } = require('./tokens')
 
 class Parser extends BaseParser {
   constructor () {
@@ -25,13 +25,17 @@ class Parser extends BaseParser {
     $.RULE('expression', () => {
       $.SUBRULE1($.node, { LABEL: 'node1' })
       $.OPTION(() => {
-        $.CONSUME(edge)
-        $.SUBRULE2($.node, { LABEL: 'node2' })
+        $.SUBRULE2($.edge)
+        $.SUBRULE3($.node, { LABEL: 'node2' })
       })
     })
     $.RULE('node', () => {
       $.CONSUME(nodeId)
       $.OPTION(() => $.CONSUME(nodeData))
+    })
+    $.RULE('edge', () => {
+      $.CONSUME(edgeArrow)
+      $.OPTION(() => $.CONSUME(edgeData))
     })
     this.performSelfAnalysis()
     this.visitor = createVisitor(this)

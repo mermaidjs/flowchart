@@ -19,11 +19,7 @@ export const createVisitor = parser => {
         node1: this.visit(ctx.node1[0])
       }
       if (ctx.edge) {
-        const edgeStr = ctx.edge[0].image
-        result.edge = {}
-        if (edgeStr === '-->') {
-          result.edge.markerEnd = '>'
-        }
+        result.edge = this.visit(ctx.edge[0])
         result.node2 = this.visit(ctx.node2[0])
       }
       return result
@@ -54,6 +50,17 @@ export const createVisitor = parser => {
             result.shape = 'diamond'
           }
         }
+      }
+      return result
+    }
+    edge (ctx) {
+      const result = {}
+      if (ctx.edgeArrow[0].image.endsWith('>')) {
+        result.markerEnd = '>'
+      }
+      if (ctx.edgeData) {
+        const data = ctx.edgeData[0].image
+        result.label = data.substring(1, data.length - 1)
       }
       return result
     }
