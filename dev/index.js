@@ -5,10 +5,10 @@ import * as R from 'ramda'
 
 import '../src/themes/forest.css'
 
-import { parse } from '../src/ast'
+import { toAst } from '../src/ast'
 
 const generareGraph = input => {
-  const ast = parse(input)
+  const ast = toAst(input)
 
   const graph = new graphlib.Graph({
     multigraph: true,

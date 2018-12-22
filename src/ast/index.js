@@ -1,7 +1,7 @@
 import lexer from './lexer'
 import parser from './parser'
 
-export const parse = input => {
+export const toAst = input => {
   const lexed = lexer.tokenize(input.trim())
   parser.input = lexed.tokens
   const cst = parser.flowchart()

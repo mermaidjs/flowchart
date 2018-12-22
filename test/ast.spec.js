@@ -1,9 +1,9 @@
 /* eslint-env jest */
-import { parse } from '../src/ast'
+import { toAst } from '../src/ast'
 
 describe('AST', () => {
   test('Single node', () => {
-    const ast = parse(`graph TD
+    const ast = toAst(`graph TD
 A`)
     expect(ast).toEqual({
       direction: 'TD',
@@ -18,7 +18,7 @@ A`)
   })
 
   test('A --> B', () => {
-    const ast = parse(`graph LR
+    const ast = toAst(`graph LR
 A --> B`)
     expect(ast).toEqual({
       direction: 'LR',
@@ -37,7 +37,7 @@ A --> B`)
   })
 
   test('iii --- jjj', () => {
-    const ast = parse(`graph LR
+    const ast = toAst(`graph LR
 iii --- jjj`)
     expect(ast).toEqual({
       direction: 'LR',
@@ -56,7 +56,7 @@ iii --- jjj`)
   })
 
   test('A[hello world]', () => {
-    const ast = parse(`graph TD
+    const ast = toAst(`graph TD
 A[hello world]`)
     expect(ast).toEqual({
       direction: 'TD',
@@ -73,7 +73,7 @@ A[hello world]`)
   })
 
   test('Round rectangle', () => {
-    const ast = parse(`graph TD
+    const ast = toAst(`graph TD
 A(hello world)`)
     expect(ast).toEqual({
       direction: 'TD',
@@ -92,7 +92,7 @@ A(hello world)`)
   })
 
   test('Circle', () => {
-    const ast = parse(`graph TD
+    const ast = toAst(`graph TD
 A((hello world))`)
     expect(ast).toEqual({
       direction: 'TD',
@@ -109,7 +109,7 @@ A((hello world))`)
   })
 
   test('Diamond', () => {
-    const ast = parse(`graph TD
+    const ast = toAst(`graph TD
 A{hello world}`)
     expect(ast).toEqual({
       direction: 'TD',
@@ -126,7 +126,7 @@ A{hello world}`)
   })
 
   test('Special character in node data', () => {
-    const ast = parse(`graph TD
+    const ast = toAst(`graph TD
 A[hello ] world]
 B((hello)(world*汉字，㊙️“"))`)
     expect(ast).toEqual({
