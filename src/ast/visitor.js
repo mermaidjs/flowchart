@@ -19,7 +19,11 @@ export const createVisitor = parser => {
         node1: this.visit(ctx.node1[0])
       }
       if (ctx.edge) {
-        result.edge = ctx.edge[0].image
+        const edgeStr = ctx.edge[0].image
+        result.edge = {}
+        if (edgeStr === '-->') {
+          result.edge.markerEnd = '>'
+        }
         result.node2 = this.visit(ctx.node2[0])
       }
       return result

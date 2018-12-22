@@ -11,13 +11,17 @@ graph TD
 A[aaa] --> B(bbb)
 A --> C((ccc))
 B --> D{ddd}
-C --> D
+C --- D
   </pre>
   <pre class="flowchart">
 graph LR
 A --> B
 A{"shape": "rect", "label": "Hello", "rx": 15, "ry": 5}
 B{"shape": "circle", "label": "World"}
+  </pre>
+  <pre class="flowchart">
+graph LR
+A --- B
   </pre>
   <pre class="flowchart">
 graph LR

@@ -23,14 +23,14 @@ export const toDagreGraph = input => {
     nodes[expression.node1.id] = R.merge((nodes[expression.node1.id] || {}), expression.node1)
     if (expression.node2) {
       nodes[expression.node2.id] = R.merge((nodes[expression.node2.id] || {}), expression.node2)
-      edges.push([expression.node1.id, expression.node2.id])
+      edges.push([expression.node1.id, expression.node2.id, expression.edge])
     }
   }
   Object.keys(nodes).forEach(id => {
     graph.setNode(id, nodes[id])
   })
-  edges.forEach(([node1, node2]) => {
-    graph.setEdge(node1, node2)
+  edges.forEach(([node1, node2, edge]) => {
+    graph.setEdge(node1, node2, { arrowhead: edge.markerEnd === '>' ? 'normal' : 'undirected' })
   })
 
   return graph
