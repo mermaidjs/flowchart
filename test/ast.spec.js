@@ -46,7 +46,7 @@ iii --- jjj`)
           node1: {
             id: 'iii'
           },
-          edge: { },
+          edge: { markerEnd: 'undirected' },
           node2: {
             id: 'jjj'
           }
@@ -169,6 +169,25 @@ B{"shape": "circle", "label": "World"}
         },
         {
           node1: { id: 'B', label: 'World', shape: 'circle' }
+        }
+      ]
+    })
+  })
+
+  test('iii -->> jjj', () => {
+    const ast = toAst(`graph LR
+iii -->> jjj`)
+    expect(ast).toEqual({
+      direction: 'LR',
+      expressions: [
+        {
+          node1: {
+            id: 'iii'
+          },
+          edge: { markerEnd: 'vee' },
+          node2: {
+            id: 'jjj'
+          }
         }
       ]
     })
