@@ -32,7 +32,7 @@ export const toDagreGraph = input => {
   edges.forEach(([node1, node2, edge]) => {
     graph.setEdge(node1, node2, {
       label: edge.label,
-      arrowhead: edge.markerEnd === '>' ? 'normal' : 'undirected'
+      arrowhead: edge.markerEnd
     })
   })
 

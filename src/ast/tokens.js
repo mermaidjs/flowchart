@@ -9,7 +9,7 @@ export const nodeId = createToken({ name: 'nodeId', pattern: /[\w-]+/ })
 export const nodeData = createToken({ name: 'nodeData', pattern: /(?:\[.+\]|\(\(.+\)\)|\(.+\)|\{.+\})/ })
 
 // example: -->
-export const edgeArrow = createToken({ name: 'edgeArrow', pattern: /(?:---|-->)/ })
+export const edgeArrow = createToken({ name: 'edgeArrow', pattern: /(?:[-_.=]{2,}(?:>>|>)?)/ })
 export const edgeData = createToken({ name: 'edgeData', pattern: /(?:\|.+\|)/ })
 
 // all white space characters except line breaks

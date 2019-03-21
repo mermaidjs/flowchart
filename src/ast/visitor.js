@@ -55,8 +55,12 @@ export const createVisitor = parser => {
     }
     edge (ctx) {
       const result = {}
-      if (ctx.edgeArrow[0].image.endsWith('>')) {
-        result.markerEnd = '>'
+      if (ctx.edgeArrow[0].image.endsWith('>>')) {
+        result.markerEnd = 'vee'
+      } else if (ctx.edgeArrow[0].image.endsWith('>')) {
+        result.markerEnd = 'normal'
+      } else {
+        result.markerEnd = 'undirected'
       }
       if (ctx.edgeData) {
         const data = ctx.edgeData[0].image
