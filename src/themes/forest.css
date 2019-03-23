@@ -4,6 +4,37 @@
   stroke-width: 1.5px;
 }
 
+.edgePath.heavy path {
+  stroke-width: 3px;
+}
+
+.edgePath.dotted path {
+  stroke-dasharray: 3px 3px;
+}
+
+.edgePath.dashed path {
+  stroke-dasharray: 9px 3px;
+}
+
+.edgePath.dashed.dotted path {
+  stroke-dasharray: 9px 3px 3px 3px;
+}
+
+.edgePath.heavy.dotted path {
+  stroke-width: 3px;
+  stroke-dasharray: 6px 3px;
+}
+
+.edgePath.heavy.dashed path {
+  stroke-width: 3px;
+  stroke-dasharray: 12px 4px;
+}
+
+.edgePath.heavy.dotted.dashed path {
+  stroke-width: 3px;
+  stroke-dasharray: 12px 3px 6px 3px;
+}
+
 .node rect,circle,ellipse,polygon {
   stroke: #13540c;
   fill: #cde498;

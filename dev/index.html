@@ -30,11 +30,19 @@ A ---|hello| B
   <pre class="flowchart">
 graph LR
 A --- B
-B -.- C
-C -.-> D
-D === E
-E ==> F
-F -->> G
+B --> C
+C -->> D
+  </pre>
+  <pre class="flowchart">
+graph LR
+A --> B
+B ==> C
+C ..> D
+D __> E
+E _.> F
+F =_> G
+G =.> H
+H =_.> I
   </pre>
 </body>
 

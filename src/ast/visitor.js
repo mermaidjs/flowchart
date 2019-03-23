@@ -66,6 +66,16 @@ export const createVisitor = parser => {
         const data = ctx.edgeData[0].image
         result.label = data.substring(1, data.length - 1)
       }
+      result.styleClasses = []
+      if (ctx.edgeArrow[0].image.includes('.')) {
+        result.styleClasses.push('dotted')
+      }
+      if (ctx.edgeArrow[0].image.includes('_')) {
+        result.styleClasses.push('dashed')
+      }
+      if (ctx.edgeArrow[0].image.includes('=')) {
+        result.styleClasses.push('heavy')
+      }
       return result
     }
   }
