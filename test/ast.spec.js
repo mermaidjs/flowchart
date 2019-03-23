@@ -192,4 +192,158 @@ iii -->> jjj`)
       ]
     })
   })
+
+  test('ii_ -.- jj_', () => {
+    const ast = toAst(`graph LR
+ii_ -.- jj_`)
+    expect(ast).toEqual({
+      direction: 'LR',
+      expressions: [
+        {
+          node1: {
+            id: 'ii_'
+          },
+          edge: {
+            markerEnd: 'undirected',
+            styleClasses: ['dotted']
+          },
+          node2: {
+            id: 'jj_'
+          }
+        }
+      ]
+    })
+  })
+
+  test('ii_ -_- jj_', () => {
+    const ast = toAst(`graph LR
+ii_ -_- jj_`)
+    expect(ast).toEqual({
+      direction: 'LR',
+      expressions: [
+        {
+          node1: {
+            id: 'ii_'
+          },
+          edge: {
+            markerEnd: 'undirected',
+            styleClasses: ['dashed']
+          },
+          node2: {
+            id: 'jj_'
+          }
+        }
+      ]
+    })
+  })
+
+  test('ii_ === jj_', () => {
+    const ast = toAst(`graph LR
+ii_ === jj_`)
+    expect(ast).toEqual({
+      direction: 'LR',
+      expressions: [
+        {
+          node1: {
+            id: 'ii_'
+          },
+          edge: {
+            markerEnd: 'undirected',
+            styleClasses: ['heavy']
+          },
+          node2: {
+            id: 'jj_'
+          }
+        }
+      ]
+    })
+  })
+
+  test('ii_ _.> jj_', () => {
+    const ast = toAst(`graph LR
+ii_ _.> jj_`)
+    expect(ast).toEqual({
+      direction: 'LR',
+      expressions: [
+        {
+          node1: {
+            id: 'ii_'
+          },
+          edge: {
+            markerEnd: 'normal',
+            styleClasses: ['dotted', 'dashed']
+          },
+          node2: {
+            id: 'jj_'
+          }
+        }
+      ]
+    })
+  })
+
+  test('ii_ =.> jj_', () => {
+    const ast = toAst(`graph LR
+ii_ =.> jj_`)
+    expect(ast).toEqual({
+      direction: 'LR',
+      expressions: [
+        {
+          node1: {
+            id: 'ii_'
+          },
+          edge: {
+            markerEnd: 'normal',
+            styleClasses: ['dotted', 'heavy']
+          },
+          node2: {
+            id: 'jj_'
+          }
+        }
+      ]
+    })
+  })
+
+  test('ii_ =_> jj_', () => {
+    const ast = toAst(`graph LR
+ii_ =_> jj_`)
+    expect(ast).toEqual({
+      direction: 'LR',
+      expressions: [
+        {
+          node1: {
+            id: 'ii_'
+          },
+          edge: {
+            markerEnd: 'normal',
+            styleClasses: ['dashed', 'heavy']
+          },
+          node2: {
+            id: 'jj_'
+          }
+        }
+      ]
+    })
+  })
+
+  test('ii_ =_.>> jj_', () => {
+    const ast = toAst(`graph LR
+ii_ =_.>> jj_`)
+    expect(ast).toEqual({
+      direction: 'LR',
+      expressions: [
+        {
+          node1: {
+            id: 'ii_'
+          },
+          edge: {
+            markerEnd: 'vee',
+            styleClasses: ['dotted', 'dashed', 'heavy']
+          },
+          node2: {
+            id: 'jj_'
+          }
+        }
+      ]
+    })
+  })
 })
